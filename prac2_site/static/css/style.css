@@ -217,7 +217,7 @@ button:hover, .admin-btn:hover {
     .form-grid { grid-template-columns: 1fr; }
     .form-group.full-width { grid-column: span 1; }
 }
-/* New Interactive and Beautiful Classes */
+
 .interactive-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s;
 }
@@ -280,7 +280,6 @@ button:hover, .admin-btn:hover {
     background: #5a6268 !important;
 }
 
-/* Additional interactive classes */
 a {
     text-decoration: none;
     color: inherit;
@@ -378,7 +377,7 @@ a {
     gap: 10px;
 }
 
-/* Admin table fixes */
+
 .admin-table {
     table-layout: fixed;
     width: 100%;
@@ -389,13 +388,12 @@ a {
     overflow-wrap: break-word;
 }
 
-/* Fix for severity tag wrapping */
 .severity {
     white-space: nowrap;
     display: inline-block;
 }
 
-/* Adjust table columns */
+
 .admin-table th:last-child,
 .admin-table td:last-child {
     width: 100px;
