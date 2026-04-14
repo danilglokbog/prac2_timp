@@ -1,8 +1,8 @@
 import socket
 import json
 
-HOST = '172.17.10.235'
-PORT = 5333
+HOST = '172.17.7.53'
+PORT = 1111
 
 SAFETY_RULES = [
     "Использование СИЗ (каска, очки, перчатки) обязательно",
