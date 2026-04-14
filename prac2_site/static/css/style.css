@@ -1,0 +1,407 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    color: #fff;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+}
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(to right, #f7971e, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+.card, .admin-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 1.8rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5);
+}
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.8rem;
+}
+h2 i {
+    color: #f7971e;
+}
+.rule-item, .incident-item, .training-item, .admin-item {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.rule-item:last-child, .incident-item:last-child, .training-item:last-child {
+    border-bottom: none;
+}
+.rule-title {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+.rule-category {
+    display: inline-block;
+    background: #f7971e;
+    color: #0f2027;
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: 10px;
+}
+.incident-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.severity {
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.severity.низкая { background: #4caf50; color: #fff; }
+.severity.средняя { background: #ff9800; color: #000; }
+.severity.высокая { background: #f44336; color: #fff; }
+.training-date {
+    color: #f7971e;
+    font-weight: 600;
+}
+.contact-section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    border-radius: 24px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+.form-group {
+    margin-bottom: 1.2rem;
+}
+.form-group.full-width {
+    grid-column: span 2;
+}
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+input, textarea, select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.2s;
+}
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #f7971e;
+    background: rgba(255, 255, 255, 0.25);
+}
+button, .admin-btn {
+    background: linear-gradient(135deg, #f7971e, #ffd200);
+    border: none;
+    padding: 0.9rem 2.5rem;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #0f2027;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 10px 20px rgba(247, 151, 30, 0.3);
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+button:hover, .admin-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 25px rgba(247, 151, 30, 0.5);
+}
+.admin-btn.small {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+}
+.loading {
+    text-align: center;
+    padding: 1rem;
+    opacity: 0.7;
+}
+.error {
+    color: #ff6b6b;
+    text-align: center;
+    padding: 1rem;
+}
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.admin-table th, .admin-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.admin-table th {
+    background: rgba(255,255,255,0.05);
+}
+.admin-actions i {
+    margin: 0 8px;
+    cursor: pointer;
+    color: #f7971e;
+    font-size: 1.2rem;
+}
+.admin-actions i:hover {
+    color: #ffd200;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-content {
+    background: #1e3a4d;
+    padding: 2rem;
+    border-radius: 24px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+@media (max-width: 768px) {
+    h1 { font-size: 2.2rem; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-group.full-width { grid-column: span 1; }
+}
+/* New Interactive and Beautiful Classes */
+.interactive-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s;
+}
+.interactive-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.12);
+}
+.form-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+.admin-table th, .admin-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.admin-table th {
+    font-weight: 700;
+    color: #f7971e;
+}
+.admin-table tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+.action-edit, .action-delete {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 0.5rem;
+    border-radius: 8px;
+    color: #fff;
+    transition: all 0.2s;
+}
+.action-edit {
+    background: #007bff;
+}
+.action-edit:hover {
+    background: #0056b3;
+    transform: scale(1.1);
+}
+.action-delete {
+    background: #dc3545;
+}
+.action-delete:hover {
+    background: #c82333;
+    transform: scale(1.1);
+}
+.cancel-btn {
+    background: #6c757d !important;
+    text-decoration: none;
+    color: white !important;
+}
+.cancel-btn:hover {
+    background: #5a6268 !important;
+}
+
+/* Additional interactive classes */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.admin-link {
+    display: inline-block;
+    color: #f7971e;
+    font-weight: 600;
+    transition: color 0.2s;
+    font-size: 1.1rem;
+}
+.admin-link:hover {
+    color: #ffd200;
+    text-decoration: underline;
+}
+.interactive-card {
+    border-top: 4px solid #f7971e;
+}
+.interactive-card:hover {
+    border-color: #ffd200;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-right: 5px;
+    transition: all 0.2s;
+}
+
+.edit-btn {
+    background: rgba(52, 152, 219, 0.2);
+    color: #3498db;
+}
+
+.edit-btn:hover {
+    background: #3498db;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.delete-btn {
+    background: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+}
+
+.delete-btn:hover {
+    background: #e74c3c;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.form-page {
+    max-width: 600px;
+    margin-top: 3rem;
+}
+
+.delete-card {
+    border-top-color: #e74c3c;
+    text-align: center;
+}
+.delete-card:hover {
+    border-color: #c0392b;
+}
+
+/* Fix for overflowing content in cards */
+.rule-item, .incident-item, .training-item {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.rule-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.incident-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.training-item > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Admin table fixes */
+.admin-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.admin-table th, .admin-table td {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Fix for severity tag wrapping */
+.severity {
+    white-space: nowrap;
+    display: inline-block;
+}
+
+/* Adjust table columns */
+.admin-table th:last-child,
+.admin-table td:last-child {
+    width: 100px;
+    white-space: nowrap;
+}
+.admin-table th:nth-last-child(2),
+.admin-table td:nth-last-child(2) {
+    width: 120px;
+}

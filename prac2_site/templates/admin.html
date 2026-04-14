@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель | Industrial Safety</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-tools"></i> Управление безопасностью</h1>
+            <div class="subtitle">Редактирование правил и инцидентов</div>
+        </header>
+
+        <div style="margin-bottom: 2rem;">
+            <a href="{{ url_for('add_rule') }}" class="admin-btn"><i class="fas fa-plus-circle"></i> Новое правило</a>
+            <a href="{{ url_for('add_incident') }}" class="admin-btn"><i class="fas fa-plus-circle"></i> Новый инцидент</a>
+            <a href="{{ url_for('add_training') }}" class="admin-btn"><i class="fas fa-plus-circle"></i> Новый тренинг</a>
+            <a href="{{ url_for('index') }}" class="admin-link" style="margin-left: 20px;"><i class="fas fa-home"></i> На главную</a>
+        </div>
+
+        <div class="dashboard">
+            <div class="admin-card interactive-card">
+                <h2><i class="fas fa-shield-alt"></i> Правила</h2>
+                <div id="admin-rules-container">
+                    {% if rules %}
+                    <table class="admin-table">
+                        <tr><th>Название</th><th>Категория</th><th>Действия</th></tr>
+                        {% for r in rules %}
+                        <tr>
+                            <td>{{ r.title }}</td>
+                            <td>{{ r.category }}</td>
+                            <td class="admin-actions">
+                                <a href="{{ url_for('edit_rule', id=r.id) }}" class="action-btn edit-btn"><i class="fas fa-edit"></i></a>
+                                <a href="{{ url_for('delete_rule', id=r.id) }}" class="action-btn delete-btn"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    {% else %}
+                    <p>Нет правил</p>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="admin-card interactive-card">
+                <h2><i class="fas fa-exclamation-triangle"></i> Инциденты</h2>
+                <div id="admin-incidents-container">
+                    {% if incidents %}
+                    <table class="admin-table">
+                        <tr><th>Дата</th><th>Место</th><th>Серьёзность</th><th>Действия</th></tr>
+                        {% for i in incidents %}
+                        <tr>
+                            <td>{{ i.date }}</td>
+                            <td>{{ i.location }}</td>
+                            <td><span class="severity {{ i.severity|lower }}">{{ i.severity }}</span></td>
+                            <td class="admin-actions">
+                                <a href="{{ url_for('edit_incident', id=i.id) }}" class="action-btn edit-btn"><i class="fas fa-edit"></i></a>
+                                <a href="{{ url_for('delete_incident', id=i.id) }}" class="action-btn delete-btn"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    {% else %}
+                    <p>Нет инцидентов</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="admin-card interactive-card">
+                <h2><i class="fas fa-calendar-alt"></i> Тренинги</h2>
+                <div id="admin-trainings-container">
+                    {% if trainings %}
+                    <table class="admin-table">
+                        <tr><th>Название</th><th>Дата</th><th>Участники</th><th>Действия</th></tr>
+                        {% for t in trainings %}
+                        <tr>
+                            <td>{{ t.name }}</td>
+                            <td>{{ t.date }}</td>
+                            <td>{{ t.participants }} чел.</td>
+                            <td class="admin-actions">
+                                <a href="{{ url_for('edit_training', id=t.id) }}" class="action-btn edit-btn"><i class="fas fa-edit"></i></a>
+                                <a href="{{ url_for('delete_training', id=t.id) }}" class="action-btn delete-btn"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    {% else %}
+                    <p>Нет тренингов</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
