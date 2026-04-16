@@ -4,7 +4,6 @@ import os
 app = Flask(__name__)
 app.secret_key = 'super_secret_key'
 
-# ---------- In-memory Database ----------
 DB = {
     'rules': [
         {'id': 1, 'title': 'Использование СИЗ', 'description': 'Все работники обязаны использовать каски, очки, перчатки и спецобувь.', 'category': 'Общие'},
@@ -31,7 +30,6 @@ def index():
 def admin():
     return render_template('admin.html', rules=DB['rules'], incidents=DB['incidents'], trainings=DB['trainings'])
 
-# ---------- Rules CRUD ----------
 @app.route('/admin/rule/add', methods=['GET', 'POST'])
 def add_rule():
     if request.method == 'POST':
@@ -66,7 +64,7 @@ def delete_rule(id):
     rule = next((r for r in DB['rules'] if r['id'] == id), None)
     return render_template('delete_rule.html', rule=rule)
 
-# ---------- Incidents CRUD ----------
+
 @app.route('/admin/incident/add', methods=['GET', 'POST'])
 def add_incident():
     if request.method == 'POST':
@@ -103,7 +101,6 @@ def delete_incident(id):
     inc = next((i for i in DB['incidents'] if i['id'] == id), None)
     return render_template('delete_incident.html', inc=inc)
 
-# ---------- Trainings CRUD ----------
 @app.route('/admin/training/add', methods=['GET', 'POST'])
 def add_training():
     if request.method == 'POST':
